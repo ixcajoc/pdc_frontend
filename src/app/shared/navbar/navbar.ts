@@ -16,18 +16,18 @@ export class Navbar {
   ){}
 
   ngOnInit(){
-    this.getCurrentUser();
+    // this.getCurrentUser();
   }
 
-  getCurrentUser(){
-    this.authService.userAutenticated().subscribe({
-      next: (response)=> {
-        this.currentUser = response.data
-        // console.log(response.data)
-      },
-      error: (error) => {error}
-    });
-  }
+  // getCurrentUser(){
+  //   this.authService.userAutenticated().subscribe({
+  //     next: (response)=> {
+  //       this.currentUser = response.data
+  //       // console.log(response.data)
+  //     },
+  //     error: (error) => {error}
+  //   });
+  // }
 
   logout(){
     this.authService.logout();

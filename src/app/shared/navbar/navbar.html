@@ -9,7 +9,7 @@
       <a class="flex-none rounded-md text-xl inline-block font-semibold text-gray-100
                 focus:outline-none focus:ring-2 focus:ring-white/30
                 dark:text-neutral-200 dark:focus:ring-white/20" href="#" aria-label="Preline">
-        <span>Asofutbol</span>
+        <span>PDC</span>
       </a>
       <!-- End Logo -->
       <div class="lg:hidden ms-1"></div>
@@ -71,9 +71,11 @@
                role="menu" aria-orientation="vertical" aria-labelledby="hs-dropdown-account">
             <div class="py-3 px-5 bg-gray-100 rounded-t-lg dark:bg-neutral-700">
               <p class="text-sm text-gray-500 dark:text-neutral-500">Signed in as</p>
-              <p class="text-sm font-medium text-gray-800 dark:text-neutral-200">{{this.currentUser.username}}</p>
+              <p class="text-sm font-medium text-gray-800 dark:text-neutral-200">admin</p>
+              <p class="text-sm font-medium text-gray-800 dark:text-neutral-200">{{`admin@correo.com`}}</p>
+              <!-- <p class="text-sm font-medium text-gray-800 dark:text-neutral-200">{{this.currentUser.username}}</p>
               <p class="text-sm font-medium text-gray-800 dark:text-neutral-200">{{this.currentUser.email}}</p>
-              <p class="text-sm font-medium text-gray-800 dark:text-neutral-200">{{this.currentUser.role}}</p>
+              <p class="text-sm font-medium text-gray-800 dark:text-neutral-200">{{this.currentUser.role}}</p> -->
             </div>
             <div class="p-1.5 space-y-0.5">
               <a (click)="logout()"

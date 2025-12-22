@@ -8,12 +8,18 @@ import { Observable } from 'rxjs';
 export interface UserLogin {
     username: string,
     password: string
-}
+  }
+  // *********************************//
+  // Las claves de acceso del Login son://
+  // usuario: admin//
+  // clave: admin123//
+  // *********************************//
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+
 
   private url = environment.url;
 
@@ -24,12 +30,31 @@ export class AuthService {
 
   ) {}
 
-  getToken() {
-    return localStorage.getItem('token');
+  
+  logout(): void {
+    localStorage.removeItem('token');
+    this.router.navigate(['/home']);
   }
-  setToken(token:string): void {
-    localStorage.setItem('token', token);
-  }
+  
+  // auth(post: UserLogin) {
+  
+  //  return this.http.post<any>(`${this.url}auth/login`, post);
+  // }
+
+  // userAutenticated(): Observable<any> {
+  //   const headers = new HttpHeaders({
+  //     'Content-Type': 'application/json',
+  //     // 'Authorization': `Bearer ${this.getToken()}`
+  //   });
+
+  //   return this.http.get<any>(`${this.url}auth/profile`, { headers });
+  // }
+  // getToken() {
+  //   return localStorage.getItem('token');
+  // }
+  // setToken(token:string): void {
+  //   localStorage.setItem('token', token);
+  // }
 
   // setUserAutenticated(currentUser:any): void {
   //   localStorage.setItem('current-user', currentUser);
@@ -38,9 +63,10 @@ export class AuthService {
   //   return localStorage.getItem('current-user');
   // }
 
-  auth(post: UserLogin) {
-    return this.http.post<any>(`${this.url}auth/login`, post);
-  }
+
+  // auth(post: UserLogin) {
+  //   return this.http.post<any>(`${this.url}auth/login`, post);
+  // }
 
   // auth(post: UserLogin){
   //   return this.http.post<any>(`${this.url}auth/login`,post).subscribe({
@@ -58,19 +84,6 @@ export class AuthService {
   //   }); 
   // }
   
-  logout(): void {
-    localStorage.removeItem('token');
-    this.router.navigate(['/home']);
-  }
-
-  userAutenticated(): Observable<any> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${this.getToken()}`
-    });
-
-    return this.http.get<any>(`${this.url}auth/profile`, { headers });
-  }
   // userAutenticated(){
   //   const headers = new HttpHeaders({
   //     'Content-Type': 'application/json',

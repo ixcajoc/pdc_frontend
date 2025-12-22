@@ -43,19 +43,27 @@ export class Login {
       password: this.loginForm.value.password ?? '',
     };
 
-    this.authService.auth(post).subscribe({
-      next: (response) => {
-        this.loading = false;
-        this.authService.setToken(response.data.token);
-        this.messageService.successAlert();
-        this.router.navigate(['/dashboard1']);
-      },
-      error: (error) => {
-        this.loading = false;
-        this.authError = error?.error?.message || 'Usuario o contraseña incorrectos.';
-        this.messageService.errorAlert(this.authError);
-      }
-    });
+    if (post.username === 'admin' && post.password === 'admin123') {
+      this.messageService.successAlert();
+      this.router.navigate(['/dashboard1']);
+    } else {
+      this.loading = false;
+      this.messageService.errorAlert('Usuario o clave incorrecta. Intenta nuevamente');      
+    }
+
+    // this.authService.auth(post).subscribe({
+    //   next: (response) => {
+    //     this.loading = false;
+    //     // this.authService.setToken(response.data.token);
+    //     this.messageService.successAlert();
+    //     this.router.navigate(['/dashboard1']);
+    //   },
+    //   error: (error) => {
+    //     this.loading = false;
+    //     this.authError = error?.error?.message || 'Usuario o contraseña incorrectos.';
+    //     this.messageService.errorAlert(this.authError);
+    //   }
+    // });
   }
 
   ctrl(name: string) { return this.loginForm.get(name)!; }
