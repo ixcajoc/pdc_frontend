@@ -1,11 +1,13 @@
 import { Component, inject } from '@angular/core';
 import { CompanyService } from '../../../services/company-service.service';
 import { Company, CompanyList,CompanyDetail } from '../../../interfaces/company.interface';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { Banner } from "../../../shared/banner/banner";
 
 @Component({
   selector: 'app-company-detail',
-  imports: [],
+  imports: [CommonModule, Banner, RouterLink],
   templateUrl: './company-detail.html',
   styleUrl: './company-detail.css'
 })
