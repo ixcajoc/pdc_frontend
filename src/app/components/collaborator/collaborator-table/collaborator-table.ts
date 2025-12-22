@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Collaborator } from '../../../interfaces/collaborator.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-collaborator-table',
@@ -7,5 +9,16 @@ import { Component } from '@angular/core';
   styleUrl: './collaborator-table.css'
 })
 export class CollaboratorTable {
+
+  @Input() tableData!: Collaborator[];
+
+  constructor(
+    private router: Router,
+  ){}
+
+  detailCollaborator(collaboratorID: number) {
+    this.router.navigate([`/dashboard1/detail-collaborador/${collaboratorID}`]);
+  }
+
 
 }

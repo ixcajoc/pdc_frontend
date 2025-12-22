@@ -3,13 +3,14 @@ export interface CollaboratorList {
 }
 
 export interface Collaborator {
-    collaboratorID: number;
+    collaboratorID?: number;
+    companyID: number;
     fullName:       string;
     age:            number;
     phone:          string;
     email:          string;
-    createdAt:      Date;
-    updatedAt:      Date;
+    createdAt?:      Date;
+    updatedAt?:      Date;
 }
 
 export interface CollaboratorDetail {
