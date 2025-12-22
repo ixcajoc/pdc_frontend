@@ -5,7 +5,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from './auth-service.service';
 import { MessageService } from './message-service.service';
-import { Company, CompanyDetail, CompanyList } from '../interfaces/company.interface';
+import { CollaboratorList } from '../interfaces/collaborator.interface';
+import { Collaborator } from '../components/collaborator/collaborator';
+import { CollaboratorDetail } from '../components/collaborator/collaborator-detail/collaborator-detail';
 
 @Injectable({
   providedIn: 'root'
@@ -22,25 +24,25 @@ export class CollaboratorService {
 
   ) {}
 
-  getAllCompanies(): Observable<CompanyList> {
-    return this.http.get<CompanyList>(`${this.url}companies`);
+  getAllCollaborators(): Observable<CollaboratorList> {
+    return this.http.get<CollaboratorList>(`${this.url}collaborators`);
   }
 
-  getCompanyByid(id:string): Observable<CompanyDetail>{
-    return this.http.get<CompanyDetail>(`${this.url}companies/${id}`);
+  getCollaboratorByid(id:string): Observable<CollaboratorDetail>{
+    return this.http.get<CollaboratorDetail>(`${this.url}collaborators/${id}`);
   }
 
-  newCompany(company: Company): Observable<Company> {
-    return this.http.post<Company>(`${this.url}companies`, company);
+  newCollaborator(collaborator: Collaborator): Observable<Collaborator> {
+    return this.http.post<Collaborator>(`${this.url}collaborators`, collaborator);
   }
    
-  updateCompany(id: number, company: Company): Observable<Company> {
-    return this.http.put<Company>(`${this.url}companies/${id}`, company);
+  updateCollaborator(id: number, collaborator: Collaborator): Observable<Collaborator> {
+    return this.http.put<Collaborator>(`${this.url}collaborators/${id}`, collaborator);
   }
 
  
-  deleteCompany(id: number): Observable<{ success: boolean; message?: string }> {
-    return this.http.delete<{ success: boolean; message?: string }>(`${this.url}companies/${id}`);
+  deleteColaborrator(id: number): Observable<{ success: boolean; message?: string }> {
+    return this.http.delete<{ success: boolean; message?: string }>(`${this.url}collaborators/${id}`);
   }
   
 
