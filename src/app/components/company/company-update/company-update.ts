@@ -1,110 +1,111 @@
 import { Component, inject } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { MessageService } from '../../../services/message-service.service';
+import { CompanyService } from '../../../services/company-service.service';
+import { Company } from '../../../interfaces/company.interface';
+import { CommonModule } from '@angular/common';
+import { Banner } from "../../../shared/banner/banner";
 
 @Component({
   selector: 'app-company-update',
-  imports: [],
+  imports: [
+    CommonModule,
+    RouterModule,
+    ReactiveFormsModule,
+    Banner
+],
   templateUrl: './company-update.html',
   styleUrl: './company-update.css'
 })
 export class CompanyUpdateComponent {
 
-  // route: ActivatedRoute = inject(ActivatedRoute);
-  // teamForm: FormGroup;
-  // teamData: any = {};
+  route: ActivatedRoute = inject(ActivatedRoute);
+  companyForm: FormGroup;
+  company!: Company;
 
 
-  // constructor(
-  //   private fb: FormBuilder,
-  //   private teamService: TeamService,
-  //   private messageService: MessageService,
-  //   private userService: UserService,
-  //   private router: Router,
+  constructor(
+    private fb: FormBuilder,
+    private messageService: MessageService,
+    private router: Router,
+    private companyService: CompanyService
 
-  // ) 
-  // {
-  //   this.teamForm = this.fb.group({
-  //     nombre: ['', Validators.required],
-  //     nombre_corto: ['', Validators.required],
-  //     logo_url: [''],
-  //     color_principal: ['#000000', Validators.required],
-  //     color_secundario: ['#ffffff', Validators.required],
-  //     fecha_fundacion: ['', Validators.required],
-  //     estadio: ['', Validators.required],
-  //     entrenador: ['', Validators.required],
-  //     id_usuario_responsable: ['', Validators.required]
-  //   });
-  // }
+  ) 
+  {
+    this.companyForm = this.fb.group({
+      nit: ['', Validators.required],
+      businessName: ['', Validators.required],
+      commercialName: [''],
+      phone: ['', Validators.required],
+      email: ['', Validators.required],
+      country: ['', Validators.required],
+      department: ['', Validators.required],
+      municipality: ['', Validators.required],
+    });
+  }
 
-  // ngOnInit(){
-  //   this.getAllCoaches()
-  //   this.getAllUsers()
-  //   this.getTeamById()
-  // }
+  ngOnInit(){
 
-  // getTeamById() {
-  //   const teamId = this.route.snapshot.params['teamId'];
+    this.getCompanyById()
+  }
 
-  //   this.teamService.getTeamByid(teamId).subscribe({
-  //     next: (response)=> {
-  //       console.log(response.data)
-  //       this.teamData = response.data;
+  getCompanyById() {
+    const id = this.route.snapshot.params['id'];
 
-  //       const fechaCompleta = this.teamData.fecha_fundacion;
-  //       const fechaFormateada = fechaCompleta.split("T")[0];
+    this.companyService.getCompanyByid(id).subscribe({
+      next: (response)=> {
+        console.log(response.data)
+        this.company = response.data;
 
-  //       this.teamForm.patchValue({
-  //         nombre: this.teamData.nombre,
-  //         nombre_corto: this.teamData.nombre_corto,
-  //         // logo_url: this.teamData.logo_url,
-  //         color_principal: this.teamData.color_principal,
-  //         color_secundario: this.teamData.color_secundario,
-  //         // fecha_fundacion: this.teamData.fecha_fundacion,
-  //         fecha_fundacion: fechaFormateada, // <-- si necesitas formatear la fecha
-  //         estadio: this.teamData.estadio,
-  //         entrenador: this.teamData.entrenador,
-  //         id_usuario_responsable: this.teamData.id_usuario_responsable
-  //       });
+        this.companyForm.patchValue({
+          nit: this.company.nit,
+          businessName: this.company.businessName,
+          commercialName: this.company.commercialName,
+          phone: this.company.phone,
+          email: this.company.email,
+          country: this.company.country,
+          department: this.company.department,
+          municipality: this.company.municipality
+        });
 
-  //     },
-  //     error: (error) => {console.log(error)}
-  //   });
-  // }
+      },
+      error: (error) => {console.log(error)}
+    });
+  }
 
+  updateCompany(){
+    if (this.companyForm.invalid) {
+      this.companyForm.markAllAsTouched();
+      return;
+    }
+    let editedCompany: Company = {
+      nit: this.companyForm.value.nit ?? '',
+      businessName: this.companyForm.value.businessName ?? '',
+      commercialName: this.companyForm.value.commercialName ?? '',
+      phone: this.companyForm.value.phone ?? '',
+      email: this.companyForm.value.email ?? '',
+      country: this.companyForm.value.country ?? '',
+      department: this.companyForm.value.department ?? '',
+      municipality: this.companyForm.value.municipality ?? ''
+    };
 
-  // updateTeam(){
+    console.log(editedCompany);
 
-  //   if (this.teamForm.invalid) {
-  //     this.teamForm.markAllAsTouched();
-  //     return;
-  //   }
-  //   let editedTeam = {
-  //     nombre: this.teamForm.value.nombre ?? '',
-  //     nombre_corto: this.teamForm.value.nombre_corto ?? '',
-  //     logo_url: this.teamForm.value.logo_url ?? '',
-  //     color_principal: this.teamForm.value.color_principal ?? '',
-  //     color_secundario: this.teamForm.value.color_secundario ?? '',
-  //     fecha_fundacion: this.teamForm.value.fecha_fundacion ?? '',
-  //     estadio: this.teamForm.value.estadio ?? '',
-  //     entrenador: this.teamForm.value.entrenador ?? '',
-  //     id_usuario_responsable: this.teamForm.value.id_usuario_responsable ?? ''
-  //   };
+    this.companyService.updateCompany(this.company.companyID!, editedCompany).subscribe({
+      next: (response)=> {
+        this.messageService.successAlert()
+        this.router.navigate([`dashboard1/detail-company/${this.company.companyID}`]);
+      },
+      error: (error) => {
+        // alert(`Algo salio mal: ${error}`);
+        this.messageService.errorAlert(error)
+      }
+    });
+  }
 
-  //   console.log(editedTeam);
-
-  //   this.teamService.updateTeam(this.teamData.id_equipo, editedTeam).subscribe({
-  //     next: (response)=> {
-  //       // alert(`Felicidades: ${response}`)
-  //       this.messageService.successAlert()
-  //       this.router.navigate(['/dashboard1/panel-team']);
-  //     },
-  //     error: (error) => {
-  //       // alert(`Algo salio mal: ${error}`);
-  //       this.messageService.errorAlert(error)
-  //     }
-  //   });
-    
-  // }
+  cancelarUpdate(){
+      this.router.navigate([`dashboard1/detail-company/${this.company.companyID}`]);
+  }
 
 }

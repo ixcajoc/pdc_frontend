@@ -7,7 +7,7 @@ import { Banner } from "../../../shared/banner/banner";
 
 @Component({
   selector: 'app-company-detail',
-  imports: [CommonModule, Banner, RouterLink],
+  imports: [CommonModule, Banner],
   templateUrl: './company-detail.html',
   styleUrl: './company-detail.css'
 })
@@ -35,6 +35,11 @@ export class CompanyDetailComponent {
       },
       error: (error) => console.log(error)
     });
+  }
+
+  GoUpdateCompany(){
+    // const companyID = this.route.snapshot.params['id'];
+    this.router.navigate([`dashboard1/update-company/${this.company.companyID}`]);
   }
 
 }

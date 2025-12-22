@@ -3,7 +3,7 @@ export interface CompanyList {
 }
 
 export interface Company {
-    companyID:      number;
+    companyID?:      number;
     nit:            string;
     businessName:   string;
     commercialName: string;
@@ -12,8 +12,8 @@ export interface Company {
     country:        string;
     department:     string;
     municipality:   string;
-    createdAt:      Date;
-    updatedAt:      Date;
+    createdAt?:      Date;
+    updatedAt?:      Date;
 }
 
 export interface CompanyDetail {

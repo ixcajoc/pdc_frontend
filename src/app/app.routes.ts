@@ -36,7 +36,7 @@ export const routes: Routes = [
                 title: 'Detalle-empresa'
             },
             {
-                path: 'update-company',
+                path: 'update-company/:id',
                 component: CompanyUpdateComponent,
                 title: 'Actualizar empresa'
             },
