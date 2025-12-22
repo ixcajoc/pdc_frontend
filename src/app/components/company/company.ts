@@ -12,7 +12,6 @@ import { Router, RouterLink } from "@angular/router";
     CommonModule,
     TableCompany,
     Banner,
-    RouterLink
 ],
   templateUrl: './company.html',
   styleUrl: './company.css'
