@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Collaborator } from '../../../interfaces/collaborator.interface';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-collaborator-table',
