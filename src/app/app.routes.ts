@@ -5,6 +5,10 @@ import { CompanyComponent } from './components/company/company';
 import { CompanyDetailComponent } from './components/company/company-detail/company-detail';
 import { CompanyUpdateComponent } from './components/company/company-update/company-update';
 import { NewCompanyComponent } from './components/company/new-company/new-company';
+import { CollaboratorComponent } from './components/collaborator/collaborator';
+import { CollaboratorDetail } from './components/collaborator/collaborator-detail/collaborator-detail';
+import { UpdateColaborador } from './components/collaborator/update-colaborador/update-colaborador';
+import { NewCollaborator } from './components/collaborator/new-collaborator/new-collaborator';
 
 export const routes: Routes = [
     {
@@ -44,6 +48,30 @@ export const routes: Routes = [
                 path: 'new-company',
                 component: NewCompanyComponent,
                 title: 'Actualizar empresa'
+            },
+
+            //--------------------
+            // collaborators routes
+            //---------------------
+            {
+                path: 'collaborators',
+                component: CollaboratorComponent,
+                title: 'collaborators',
+            },
+            {
+                path: 'detail-collaborador/:id',
+                component: CollaboratorDetail,
+                title: 'Detalle-colaboradores'
+            },
+            {
+                path: 'update-collaborator/:id',
+                component: UpdateColaborador,
+                title: 'Actualizar colaborador'
+            },
+            {
+                path: 'new-collaborator',
+                component: NewCollaborator,
+                title: 'Actualizar colaborador'
             },
             // if the path is wrong, This component will charge
             {
