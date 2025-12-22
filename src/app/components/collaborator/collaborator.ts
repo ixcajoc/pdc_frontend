@@ -4,10 +4,11 @@ import { Router } from '@angular/router';
 import { Collaborator } from '../../interfaces/collaborator.interface';
 import { Banner } from "../../shared/banner/banner";
 import { CollaboratorTable } from "./collaborator-table/collaborator-table";
+import { ExportButton } from "../../shared/export-button/export-button";
 
 @Component({
   selector: 'app-collaborator',
-  imports: [Banner, CollaboratorTable],
+  imports: [Banner, CollaboratorTable, ExportButton],
   templateUrl: './collaborator.html',
   styleUrl: './collaborator.css'
 })

@@ -1,14 +1,19 @@
 <div class="container">
     <app-banner [title]="`Colaboradores`"></app-banner>
 
-    <div class="container flex justify-end P-3">
-        <button (click)="goToNewCollaborator()"
-            class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg 
-                border border-transparent bg-blue-600 text-white 
-                hover:bg-blue-700 focus:outline-hidden focus:bg-blue-700 
-                disabled:opacity-50 disabled:pointer-events-none">
-            Nuevo
-        </button>
+    <div class="container flex justify-end P-3 gap-3">
+        <app-export-button [tableData]="collaboratorList    "></app-export-button>
+        
+        <div class="flex items-center ">
+
+            <button (click)="goToNewCollaborator()"
+                class="py-3  px-10  items-center gap-x-2 text-sm font-medium rounded-lg 
+                    border border-transparent bg-blue-600 text-white 
+                    hover:bg-blue-700 focus:outline-hidden focus:bg-blue-700 
+                    disabled:opacity-50 disabled:pointer-events-none">
+                Nuevo
+            </button>
+        </div>
     </div>
     
     <app-collaborator-table [tableData]="collaboratorList"></app-collaborator-table>

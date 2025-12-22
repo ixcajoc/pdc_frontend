@@ -5,6 +5,7 @@ import { TableCompany } from './table-company/table-company';
 import { Company, CompanyList } from '../../interfaces/company.interface';
 import { Banner } from "../../shared/banner/banner";
 import { Router, RouterLink } from "@angular/router";
+import { ExportButton } from "../../shared/export-button/export-button";
 
 @Component({
   selector: 'app-company',
@@ -12,6 +13,7 @@ import { Router, RouterLink } from "@angular/router";
     CommonModule,
     TableCompany,
     Banner,
+    ExportButton
 ],
   templateUrl: './company.html',
   styleUrl: './company.css'

@@ -9,6 +9,8 @@ import { CollaboratorComponent } from './components/collaborator/collaborator';
 import { CollaboratorDetail } from './components/collaborator/collaborator-detail/collaborator-detail';
 import { UpdateColaborador } from './components/collaborator/update-colaborador/update-colaborador';
 import { NewCollaborator } from './components/collaborator/new-collaborator/new-collaborator';
+import { MaintenanceNoticeComponent } from './shared/maintenance-notice-component/maintenance-notice-component';
+import { PanelDashboard } from './pages/dashboards/panel-dashboard/panel-dashboard';
 
 export const routes: Routes = [
     {
@@ -23,12 +25,17 @@ export const routes: Routes = [
         children:[
             {
                 path: '',
-                redirectTo: 'panel-dashboard',
+                redirectTo: 'panel-dash',
                 pathMatch: 'full',
             },
             //--------------------
             // companies routes
             //---------------------
+            {
+                path: 'panel-dash',
+                component: PanelDashboard,
+                title: 'panel',
+            },
             {
                 path: 'companies',
                 component: CompanyComponent,
@@ -72,6 +79,11 @@ export const routes: Routes = [
                 path: 'new-collaborator',
                 component: NewCollaborator,
                 title: 'Actualizar colaborador'
+            },
+            {
+                path: 'mantenimiento',
+                component: MaintenanceNoticeComponent,
+                title: 'Mantenimiento'
             },
             // if the path is wrong, This component will charge
             {
