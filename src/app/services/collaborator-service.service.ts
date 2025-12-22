@@ -5,9 +5,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from './auth-service.service';
 import { MessageService } from './message-service.service';
-import { Collaborator, CollaboratorList } from '../interfaces/collaborator.interface';
+import { Collaborator, CollaboratorList, CollaboratorDetail } from '../interfaces/collaborator.interface';
 import { CollaboratorComponent } from '../components/collaborator/collaborator';
-import { CollaboratorDetail } from '../components/collaborator/collaborator-detail/collaborator-detail';
 
 @Injectable({
   providedIn: 'root'
@@ -40,7 +39,6 @@ export class CollaboratorService {
     return this.http.put<Collaborator>(`${this.url}collaborators/${id}`, collaborator);
   }
 
- 
   deleteColaborrator(id: number): Observable<{ success: boolean; message?: string }> {
     return this.http.delete<{ success: boolean; message?: string }>(`${this.url}collaborators/${id}`);
   }

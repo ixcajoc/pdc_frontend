@@ -69,7 +69,7 @@ export class CompanyDetailComponent {
     this.companyService.deleteCompany(id).subscribe({
       next: (response) => {
         console.log('Usuario eliminado:', response);
-              
+        this.router.navigate([`dashboard1/companies`]);   
         Swal.fire({
           title: '¡Eliminado!',
           text: 'Usuario eliminado correctamente.',
