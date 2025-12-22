@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from './auth-service.service';
 import { MessageService } from './message-service.service';
-import { Company, CompanyList } from '../interfaces/company.interface';
+import { Company, CompanyDetail, CompanyList } from '../interfaces/company.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -26,8 +26,8 @@ export class CompanyService {
     return this.http.get<CompanyList>(`${this.url}companies`);
   }
 
-  getCompanyByid(id:string): Observable<Company>{
-    return this.http.get<Company>(`${this.url}companies/${id}`);
+  getCompanyByid(id:string): Observable<CompanyDetail>{
+    return this.http.get<CompanyDetail>(`${this.url}companies/${id}`);
   }
 
   newCompany(company: Company): Observable<Company> {

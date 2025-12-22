@@ -15,3 +15,7 @@ export interface Company {
     createdAt:      Date;
     updatedAt:      Date;
 }
+
+export interface CompanyDetail {
+    data: Company;
+}
